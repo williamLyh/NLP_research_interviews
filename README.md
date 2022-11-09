@@ -15,3 +15,7 @@ The core idea of attention is to compute Q, K, V, which is imported from recommo
 ## NLG Metrics
 - BLEU
 - ROUGE
+
+## Batch Normalization 
+
+## SGD
