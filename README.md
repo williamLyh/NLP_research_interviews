@@ -20,3 +20,26 @@ The core idea of attention is to compute Q, K, V, which is imported from recommo
 ## Batch Normalization 
 
 ## SGD
+
+## Activation functions
+Why do we want activation functions?
+- ReLu
+- tanh
+- Sigmoid
+
+## Softmax details
+
+## Transformer structure
+### Transformer encoder
+### Transformer decoder
+### Encoder-decoder
+
+### DL training details
+- N-fold
+- How to tune hyper-parameters (such as lr)
+- Overfit/underfit
+- Regularization L1, L2
+
+
+
+
