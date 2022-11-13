@@ -19,18 +19,13 @@ The core idea of attention is to compute Q, K, V, which is imported from recommo
 ## Loss function
 - Cross-entropy: 
 
-## Transformer structure
-### Transformer encoder
-### Transformer decoder
-### Encoder-decoder
-### Attention vs LSTM
-RNN is hard to parallelize because of its sequential nature. CNN can parallelize, but each filter/kernel can only see limited vectros. Filters from higher layer have potential to see more vectors. Self-attention layer has Q, K, V and token at any position can attend other tokens at any positions. Self-attention has similar idea with CNN, but has more parameters and therefore is more flexible and needs more training data, e.g. ViT has 300M training pictures, but if only trained on ImageNet, its performance is worse than CNN. 
-
 ## DL training details
+### Miscellaneous details
 - K-fold: 2-fold has problems 1) Model performance depends on the splitting of train and valid set. 2) Model only trained on part of the data. Therefore ** cross-validation**, split dataset into k portion. Iteratively train k models and evaluate on the k valid sets. The average loss is more accurate.
 - How to tune hyper-parameters (such as lr)
 - Overfit/underfit: If **overfitting**, two possible solutions: 1) **Regularization**, keep all features but reduce number of parameters. 2) **Remove noisy features** by hand or methods such as PCA.
 - Batch Normalization 
+
 ### Regularization
 <img src="image/L1L2.JPG" width="500">  
 
@@ -46,6 +41,8 @@ Why do we want activation functions?
 - ReLu
 - tanh
 - Sigmoid
+### Attention vs LSTM
+RNN is hard to parallelize because of its sequential nature. CNN can parallelize, but each filter/kernel can only see limited vectros. Filters from higher layer have potential to see more vectors. Self-attention layer has Q, K, V and token at any position can attend other tokens at any positions. Self-attention has similar idea with CNN, but has more parameters and therefore is more flexible and needs more training data, e.g. ViT has 300M training pictures, but if only trained on ImageNet, its performance is worse than CNN. 
 
 ## SGD
 
