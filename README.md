@@ -35,6 +35,14 @@ The core idea of attention is to compute Q, K, V, which is imported from recommo
 - **Early stopping**
 
 ### Gradient vanish & explode
+They both result in unstable gradient. They are caused by
+- **Too deep** NN (too many layers). For a deep NN with multiple layers, if the average gradient > 1, gradient updates will increase exponentially, which leads to gradient explode. The top layer will be updated much faster than the bottom layers. If the average gradient < 1, gradient vanishing.
+- The choice of **activation functions** could lead to increasing/decreasing average gradients.
+- Too large **initial weights**.
+Potential solution:
+- Use ReLU, Leaky-ReLU rather than Sigmoid or tanh.
+- Batch normalization.
+
 
 ### Activation functions
 Why do we want activation functions?
