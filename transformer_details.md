@@ -15,3 +15,6 @@ Transformer has a encoder and decoder, each consists of 6 blocks.
 - The second multi-head cross-attention: **The K and V of this layer is calculated from the encoded input (output of the encoder), while Q is calcualted based on the previous masked attention layer (already masked)**. Each token in the decoder could attend with all tokens in the encoder. 
 - 
 ## Encoder-decoder
+- The architecture is used for seq2seq problem. Encoder and decoder could have different options such as RNN, CNN or transformer.
+- Limitations: Traditionally, the only connection between encoder and decoder is a fixed length semantic vector. There might be information loss, especially when the input sequence is long.
+- The attention mechanism in the transformer does not require compressing information into a fixed length vector.
