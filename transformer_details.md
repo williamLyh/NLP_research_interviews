@@ -19,3 +19,6 @@ Transformer has a encoder and decoder, each consists of 6 blocks.
 - The encoder can also used to encode multimodal data and the decoder can generate sequence of different modality.
 - Limitations: Traditionally, the only connection between encoder and decoder is a fixed length semantic vector. There might be information loss, especially when the input sequence is long.
 - The attention mechanism in the transformer does not require compressing information into a fixed length vector.
+
+## Self-attention
+The core idea of attention is to compute Q, K, V, which is imported from recommondation system. Q represents the aspects we are interested in, K represents the aspects that the data have, while V represents the actual information of different aspects. The output of a self-attention layer is just a weighted average of the channels of the input features. By default, e.g. BERT, Q, K, V should have the same dimensions. However, this is not necessary. The attended output should have less dimension than the input features. For example, if K and V have dimension [T+R, d], while Q has [R, d] (because we are only interested in less channel/features than the input.), then the score metrics F(Q, K) has dimension [R, T+R], which behaves more like a feature selection/projection matric. The the atteneded output is [R, d], which has the same dimension with Q.
