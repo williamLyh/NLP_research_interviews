@@ -6,9 +6,6 @@
 
 ## Boosting
 
-### Self-attention
-The core idea of attention is to compute Q, K, V, which is imported from recommondation system. Q represents the aspects we are interested in, K represents the aspects that the data have, while V represents the actual information of different aspects. The output of a self-attention layer is just a weighted average of the channels of the input features. By default, e.g. BERT, Q, K, V should have the same dimensions. However, this is not necessary. The attended output should have less dimension than the input features. For example, if K and V have dimension [T+R, d], while Q has [R, d] (because we are only interested in less channel/features than the input.), then the score metrics F(Q, K) has dimension [R, T+R], which behaves more like a feature selection/projection matric. The the atteneded output is [R, d], which has the same dimension with Q.
-
 ## NLG Metrics
 - BLEU: Range 0 to 1, based on Precisions of n-gram. Short sentence tends to get high value, therefore length penalty.
 - ROUGE: Based on Recall, 4 different methods: Rouge-L (longest common subsequence), Rouge-N (n-gram recall), Rouge-W (weighted longest common subsequence), Rouge-S (n-gram, but allow skip). Recall, which means how many n-gram of the reference are matched by the generated sequence.
@@ -45,7 +42,6 @@ Potential solution:
 - Use ReLU, Leaky-ReLU rather than Sigmoid or tanh.
 - Batch normalization.
 
-
 ### Activation functions
 Why do we want activation functions?
 The development of activation functions: Sigmoid->Tanh->ReLU->Leaky ReLU->Maxout
@@ -60,12 +56,15 @@ RNN is hard to parallelize because of its sequential nature. CNN can parallelize
 ## Optimization methods
 ### SGD
 
-## Decoding method:
+## Decoding method
 - [Greedy, top-k and top-p](https://docs.cohere.ai/docs/controlling-generation-with-top-k-top-p): Greedy, always pick the token with highest likelihood. Top-k, pick top-k tokens and sample from them based on their likelihood. Top-p (Nucleus sampling), pick top-p tokens whose probability add up to a threshold e.g. 75%, and sample from them based on their likelhood.
 - Beam search
 - Classifier-conditioned decoding methods, e.g. FUDGE
 - LogicDecoding, Entropy-based decoding
 
-
+## Tokenizer
+- Classic tokenizer: Word by word. Limitations: OOV, low frequency words cannot get trained (trimmed for the size of the vocabulary.). Cannot link the connections between words with the same root, e.g. old, older and oldest.
+- Character embedding: Char level embeddings. Limitations: Too fine-grained, which leads to long sequence and therefore expensive to train.
+- subword embedding: In the middle between char and word level. BPE, Byte Pair Encoding, can effectively balance the size of vocabulary and encoding step. Limitations: For a same word, there could be multiple subword combinations. 
 
 
