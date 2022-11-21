@@ -16,7 +16,13 @@
 ## Softmax details
 
 ## Loss function
-- Cross-entropy: 
+### Regression loss
+- Mean Absolute Error (MAE): L1 loss, not sensitive (robust) to outlier datapoint. Therefore, better choice when there are many outliers in the dataset. MAE **not continuous**, therefore not differentiable when f(x)=0. The **gradient for MAE is almost constant**, when when the loss is small, which is not good for **convergence**, but would not lead to **gradient explode**. When there is **small noise** on the dataset (<<1), the loss will **scale linearly**. 
+- Mean Squared Error (MSE): L2 loss, sensitive (not robust) to outlier datapoint. Therefore, better choice when the outlier features are **desired**. MSE is smooth, continuous and differentible, therefore **gradient descent** can be used. The gradient reduces when loss is small, which is **good for convergence**. When there is small noise on the dataset (<<1), the loss will **scale less** (square rate). 
+- Smooth L1 loss: Converge faster than L1 and less sensitive (less gradient explode) to outliers than L2. Used in Faster R-CNN. 
+### classification loss
+- Cross Entropy (BCE):
+- Why MSE cannot be used on classification problem: 
 
 ## DL training details
 ### Miscellaneous details
