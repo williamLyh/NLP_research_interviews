@@ -73,4 +73,6 @@ RNN is hard to parallelize because of its sequential nature. CNN can parallelize
 - Character embedding: Char level embeddings. Limitations: Too fine-grained, which leads to long sequence and therefore expensive to train.
 - subword embedding: In the middle between char and word level. BPE, Byte Pair Encoding, can effectively balance the size of vocabulary and encoding step. Limitations: For a same word, there could be multiple subword combinations. 
 
-
+## Word embedding
+- Word2vec: Skip-gram: Use the center word to predict context words. CBOW: Use context word to predict center word. 
+- Word2vec vs glove: Word2vec base on local sliding window, while Glove is based on global cooccurance matrix. Therefore word2vec and learn on the fly. Word2vec has fixed weighted cross-entropy loss, while golve has changable weighted MSE loss.
