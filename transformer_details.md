@@ -9,6 +9,12 @@ Transformer has a encoder and decoder, each consists of 6 blocks.
 ## Transformer encoder
 - Each encoder block consists of a multi-head self-attention layer (with Add & Norm) and a Feed Forward layer (with Add & Norm)
 - The output of the encoder is the encoded tokens which has the dimension of [# tokens, latten state] 
+### BERT
+- Two pretrained objectives: Masked LM objective and Next Sentence Prediction objective.
+- BERT input and output will have space for [CLS] token at the beginning of sequence and [SEP] token at the end of the first sentence. 
+- Why [CLS] token can be used to represent the full sentence? Because there is no actual input word (no semantics) corresponding to [CLS] token, therefore, after 12 layer self-attentions, it has **value average the representation of all words after attention**. Furthermore, NSP pretraining objective is calculated from [CLS] token, therefore it can learn better sentence-level semantic information.
+- BERT embeddings: The sum of token embedding, segment embedding and position embedding.
+
 ## Transformer decoder
 - Each decoder block consiste of a 1) **masked** multi-head self-attention layer (with Add & Norm), 2) a multi-head cross-attention layer (with Add & Norm) and 3) a Feed Forward layer (with Add & Norm).
 - The first masked multi-head self-attention: **The decoder mask will prevent the current token attending with the tokens behind it**.  
