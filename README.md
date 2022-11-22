@@ -76,3 +76,8 @@ RNN is hard to parallelize because of its sequential nature. CNN can parallelize
 ## Word embedding
 - Word2vec: Skip-gram: Use the center word to predict context words. CBOW: Use context word to predict center word. 
 - Word2vec vs glove: Word2vec base on local sliding window, while Glove is based on global cooccurance matrix. Therefore word2vec and learn on the fly. Word2vec has fixed weighted cross-entropy loss, while golve has changable weighted MSE loss.
+- Word2vec model learns two matrix, W (from one-hot to hidden) and W' (from hidden to nearly one-hot). The W is used as a **word embedding matrix**, which has dimension of [vocabulary size * embedding dimension].
+
+## ML algorithms
+- TF-IDF (Term Frequency-inverse Document Frequency): Calculating stats on keywords, to evaluate the importance of a keyword to a copora (list of docs). The importance should be proportional to its occurrence within a specific doc (TF) and inversely proportional to the number of docs contains it (IDF). TF-IDF can effectively **distinguish between keywords and common words** and can show **relatedness between keywords and doc**.
+
