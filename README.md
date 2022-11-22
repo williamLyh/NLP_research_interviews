@@ -80,4 +80,5 @@ RNN is hard to parallelize because of its sequential nature. CNN can parallelize
 
 ## ML algorithms
 - TF-IDF (Term Frequency-inverse Document Frequency): Calculating stats on keywords, to evaluate the importance of a keyword to a copora (list of docs). The importance should be proportional to its occurrence within a specific doc (TF) and inversely proportional to the number of docs contains it (IDF). TF-IDF can effectively **distinguish between keywords and common words** and can show **relatedness between keywords and doc**.
-
+- Linear Regression: Linear means the relation between two variables is a linear function. $\mathbf{y}=\mathbf{wx}+\mathbf{b}$. Loss function, we can use MSE. The parameters can be optimized by $\frac{\partial  L}{\partial  \mathbf{w}}$ and there is closed-form solution.
+- Logistic Regression: 
