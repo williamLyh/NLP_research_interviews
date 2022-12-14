@@ -77,8 +77,19 @@ RNN is hard to parallelize because of its sequential nature. CNN can parallelize
 - Word2vec: Skip-gram: Use the center word to predict context words. CBOW: Use context word to predict center word. 
 - Word2vec vs glove: Word2vec base on local sliding window, while Glove is based on global cooccurance matrix. Therefore word2vec and learn on the fly. Word2vec has fixed weighted cross-entropy loss, while golve has changable weighted MSE loss.
 - Word2vec model learns two matrix, W (from one-hot to hidden) and W' (from hidden to nearly one-hot). The W is used as a **word embedding matrix**, which has dimension of [vocabulary size * embedding dimension].
+- Word2vec vs BERT: The basic assumption made by word2vec is word could be represented by it contextual words. The learned word embedding is **static** after training. The word representation by BERT encodes the information from the full sentence, which means not static.   
+
+## Sentence-level embedding
+- Average/concatenate word embeddings: Like pooling methods.
+- [CLS] For BERT: we could use the [CLS] token to represent the full sentence, because 1) [CLS] is used as sentence representation for Next Sentence Prediction pretraining task. 2) [CLS] doesn't correspond any effective input tokens, which means its output can be considered as a weighted average of all other tokens (self-attention mechanism).
+- Sentence BERT: Finetune a vanilla Bert with sentence similarity task. Take the similarity between sentence representations as loss.
+- BERT-Flow: Normalizing Flows to transform the sentence representation by BERT to a smooth standard Gaussian distribution (isotropic). As a unsupervised method, the performance is better than vanilla BERT and Glove.
+- SimCSE: Use contrastive learning for sentence embedding generation. Make embeddings between similar sentences closer and different sentences further. 1) Supervised SimCSE: positive and negative sentence pairs  2) Unsupervised SimCSE: Positive sample: Two embeddings from one sentence (dropout). Negative sample: Other sentences from the same batch. Optimization objective: contrastive loss.  
+- PromptBert: Put sentence into the prompt templates and use a specific [MASK] token to represent the full sentence. Although the performance is better than SimCSE, but the choice of prompt template is important. 
+
+## In-context learning
 
 ## ML algorithms
-- TF-IDF (Term Frequency-inverse Document Frequency): Calculating stats on keywords, to evaluate the importance of a keyword to a copora (list of docs). The importance should be proportional to its occurrence within a specific doc (TF) and inversely proportional to the number of docs contains it (IDF). TF-IDF can effectively **distinguish between keywords and common words** and can show **relatedness between keywords and doc**.
+- TF-IDF (Term Frequency-inverse Document Frequency): Calculating stats on keywords, to evaluate the **importance of a keyword to a copora** (list of docs). The importance should be proportional to its occurrence within a specific doc (TF) and inversely proportional to the number of docs contains it (IDF). TF-IDF can effectively **distinguish between keywords and common words** and can show **relatedness between keywords and doc**.
 - Linear Regression: Linear means the relation between two variables is a linear function. $\mathbf{y}=\mathbf{wx}+\mathbf{b}$. Loss function, we can use MSE. The parameters can be optimized by $\frac{\partial  L}{\partial  \mathbf{w}}$ and there is closed-form solution. The closed form solution is called the least square equation.
 - Logistic Regression: For binary classification problem. Logistic/Sigmoid function, used to pass the linear function into a probability. Therefore the likelimood of the data becomes a Bernoulli probability distribution. Due to the non-linear Sigmoid function, The Likelihood for LR doesn't have closed form solution, therefore gradient descent is required to find the maximum likelihood estiamtion of the parameters. 
