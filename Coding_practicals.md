@@ -1,7 +1,8 @@
 # Coding Practicals
 ## Huggingface
 ### Is it possible to use batch generation for Huggingface models?
-It is possible to make huggingface model to do batch generation. However, it requires tokenizer to initilize with pad_side='left'. Below is an example:
+It is possible to make huggingface model to do batch generation. However, it requires tokenizer to initilize with pad_side='left'. 
+Below is an example:
 
 Greedy Decoding:
 
@@ -13,10 +14,10 @@ Greedy Decoding:
 >>> model = AutoModelForCausalLM.from_pretrained("gpt2")
 
 >>> prompt = ["Today I believe we can finally", "Tomorrow I believe we can finally"] 
->>> input_ids = tokenizer(prompt, padding=True, return_tensors="pt").input_ids
+>>> batch_input = tokenizer(prompt, padding=True, return_tensors="pt")
 
 >>> # generate up to 30 tokens
->>> outputs = model.generate(input_ids, max_length=30)
+>>> outputs = model.generate(batch_input.input_ids, attention_mask=batch_input.attention_mask, max_length=30)
 >>> tokenizer.batch_decode(outputs, skip_special_tokens=True)
 ```
 
@@ -25,3 +26,7 @@ In the pretrain of GPT2, "\n" is used as a line breaker. Therefore we could cont
 It has token id of 198. However, we shouldn't check it with tokenizer.convert_id_to_token(198), which will return "Ċ". 
 The tokenizer.convert_token_to_id("\n") will give 50256, which is the id of "<|endoftext|>".
 The right way to check to id is by encode and decode functions.
+
+### Difference between attention_mask and token_id of -100 (in GPT2):
+The attention_mask will mask input such that it won't be passed into the model in the first place. 
+The token_id of -100 is usually set for padding tokens in labels. It won't be calculated by the loss function. As stated in this link.
