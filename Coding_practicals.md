@@ -1,7 +1,7 @@
 # Coding Practicals
 ## Huggingface
 ### Is it possible to use batch generation for Huggingface models?
-It is possible to make huggingface model to do batch generation. However, it requires tokenizer to initilize with pad_side='left'. 
+As described in this [link](https://github.com/huggingface/transformers/pull/7552#issue-497255933), it is possible to make huggingface model to do batch generation. However, it requires tokenizer to initilize with pad_side='left'. 
 Below is an example:
 
 Greedy Decoding:
