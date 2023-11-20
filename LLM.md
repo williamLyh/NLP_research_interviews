@@ -11,3 +11,11 @@ solution. Having a reference LM and an active LM. Compare the KL divergence betw
 part of the penalty to constrain the active LM not deviate too much.
 [Reference link](https://huggingface.co/docs/trl/main/en/quickstart)
 - DPO
+
+## Context Length
+More context length will lead to: 1) More GPU memory, 2) Time and space complexity and 3) long-term dependency.
+Methods:
+- Sparse attention mechanism
+- ALiBi position encoding
+- FlashAttention
+- Retrieval-based
