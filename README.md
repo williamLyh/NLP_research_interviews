@@ -35,8 +35,21 @@
 <img src="image/L1L2.JPG" width="500">  
 
 - **L1, L2**: Regularization can alleviate overfitting and improve ability to generalize. L1 is equivalent to Laplace prior (sum of absolute value), L2 is Gaussian prior (sum of squared value). Prior means the prior knowledge of the value distribution of weights/parameters. L1 tends to give **sparse parameters**, while L2 tends to give parameters with **small values**. (Sparse parameter is good because less parameters are used, some weights become 0. It can be helpful for **feature selection** and therefore provide **interpretability**. Small parameter value is good because a samll change of the input data wouldn't give large shift on the predicting result, which means more robustness. More parameters are used means the model wouldn't only depend on few features, which provide generalization ability.) L1 doesn't provide an analytical solution (due to the absolute operation), but it can be compatible with sparse algorithms, while L2 has analytical solution, as it keeps the loss **continuous** and therefore can be calculated more **efficiently by gradient descent**. L1 is not sensitive with abnormal data/parameters, as L2 will emphasis them. Therefore L1 is more robust for noisy situation, but L2 is better choice when the anormaly is valuable for the study. 
-- **Dropout**: 1) Dropout is equivalent to train multiple submodels with randomly less neuros, which means when predicting, model works like voting. 2) Increase robustness, as features are forced to depend on different neurons, rather than a fixed set of neurons. 
-- **Batch Normalization & layer normalization**: Batch is for **a batch of data**, while Layer is for **a single datapoint**. Batch is normalizing **across the same features**, while Layer is normalizing **across all features**. The batch normalization could be applied on the input data as well as **the output of each layer**. The mean and variance of the normalization are **learnt during training** and used during inference. 
+- **Dropout**: 1) Dropout is equivalent to train multiple submodels with randomly less neuros, which means when predicting, model works like voting. 2) Increase robustness, as features are forced to depend on different neurons, rather than a fixed set of neurons.
+
+### Normalization
+- Why Normalization:
+Independent and identically distributed (**i.i.d**), also notnecessary for all ML method, but can simplify the training and improve the inference. Therefore, **whitening** is an important preprocessing step for two reasons: 1. make features independent. 2. make all features same mean and variance.
+However, **Internal Covariate Shift (ICS)** happens in DL: Signal distributions keep increasingly shifting with deeper layers, but label distribution is fixed, which means there is a covariate shift.
+ICS may lead to slower learning speed (deeper layer learns different distributions), early stopping (saturated) and layers training becomes dependent.
+
+- **Batch Normalization & layer normalization**: Batch is for **a batch of data**, while Layer is for **a single datapoint**. Batch is normalizing **across the same features**, while Layer is normalizing **across all features**. The batch normalization could be applied on the input data as well as **the output of each layer**. The mean and variance of the normalization are **learnt during training** and used during inference.
+LN is not affectedd by mini-batch distribution (allow small batch or RNN), no need for storing mean and variance, but if input features have very different nature, LN may reduce the expressiveness of models.
+- **Weight Normalization**: Use the neuro weights to sacle the input features.
+- **Cosine Normalization**:
+- Why Normalization works:
+1) Weight scale invariance: $Norm(W'x)=Norm(Wx)$, $W'=\lambda W$, scaled weight. Therefore normalization does not affect back-propogation, but can allow higher lr.
+3) Data scale invariance: $Norm(Wx')=Norm(Wx)$, $x'=\lambda x$, scaled data. Mitigate gradient vanishing or explosion. 
 - **Early stopping**
 
 ### Gradient vanish & explode
