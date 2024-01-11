@@ -2,7 +2,7 @@
 Transformer has a encoder and decoder, each consists of 6 blocks.
 - **The output of the encoder is used to attended with every layers of the decoder.**  
 - Word embedding (e.g. random initialized, Glove) + sinodal positional embedding
-- Multi-head self-attention: 8 heads, the results of each head will be concatenated and passed to next layer.
+- Multi-head self-attention: 8 heads, the results of each head will be concatenated and passed to next layer. Why multi-head instead of one: Multi-head forms multiple sub-space. Each sub-space can learn focus on different aspect of information, while the total attention size remain the same.   
 - Add & Norm sub-layer: **Add** is a **residule connection** to solve training problem of deep neural network such that the NN only needs to focus on the current residules. (to tackle network degradation and gradient vanish, as used in ResNet.) **Norm** stands for **layer normalization** (commonly used in RNN), which normalize the inputs of each layer into N(0,1) to speed up the convergence.        
 - Feed Forward sub-layer: **Two** fully connected layers, the **first activation is Relu** and the second **doesn't** have an activation.
 
