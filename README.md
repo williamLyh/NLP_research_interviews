@@ -14,6 +14,15 @@
 - Diversity: Diff n-gram.
 
 ## Softmax details
+The typical expression for softmax function:  
+```math
+\sigma(\mathbf{z})_i = \frac{e^{z_i}}{\sum_{j=1}^{N} e^{z_j}}
+```
+However, $z_i$ can be some extreme values which affect the stability of softmax. Therefore a stabler version is   
+```math
+\sigma(\mathbf{z})_i = \frac{e^{z_i - \max(\mathbf{z})}}{\sum_{j=1}^{N} e^{z_j - \max(\mathbf{z})}}
+```
+
 
 ## Loss function
 ### Regression loss
