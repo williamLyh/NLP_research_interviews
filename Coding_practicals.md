@@ -1,4 +1,8 @@
 # Coding Practicals
+## Techniques
+**Einstein Summation**
+Einstein Summation (Einsum) is a handy tool for matrix operation. It can do everything, including inner product, batch product, summation or elementwise product. Please refer to the [Blog](https://www.cnblogs.com/qftie/p/16245124.html)
+
 ## Huggingface
 ### Is it possible to use batch generation for Huggingface models?
 As described in this [link](https://github.com/huggingface/transformers/pull/7552#issue-497255933), it is possible to make huggingface model to do batch generation. However, it requires tokenizer to initilize with pad_side='left'. 
