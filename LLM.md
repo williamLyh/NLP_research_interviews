@@ -1,3 +1,8 @@
+# Basic knowledge
+## Model size
+For a 10B full precision model. It has $10e10$ parameters and each parameter has 32 bit (4 bytes). Therefore, its size is $10^{10} \times 4 /(1024)^3 \approx 40\text{Gb}$
+If it's a half precision model: Then each parameter is 16 bit (2 bytes). Therefore, the size is ~20Gb.
+
 # Training
 ## RLHF
 3 steps: 1) Pretrain+(SFT) a LM. 2) Train a Reward Model (RM) and 3) Train LM with RL.
