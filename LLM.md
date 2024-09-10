@@ -24,3 +24,24 @@ Methods:
 - ALiBi position encoding
 - FlashAttention
 - Retrieval-based
+
+## Positional Embedding
+1. Absolute Positional Embeddings: Assigns a unique vector to each position in the sequence.
+    - Pros: Simple to implement
+    - Cons: Limited to a fixed maximum sequence length; doesn't generalize well to unseen positions
+
+2. Sinusoidal Positional Encodings: Uses sine and cosine functions of different frequencies to encode positions.
+    - Pros: Can theoretically handle arbitrary sequence lengths; no additional parameters to learn
+    - Cons: May not capture positional information as effectively as learned methods
+
+3. Relative Positional Embeddings: Encodes relative distances between tokens rather than absolute positions.
+    - Pros: Can handle longer sequences; better generalization to unseen lengths
+    - Cons: Can be computationally expensive
+
+4. Rotary Positional Embeddings (RoPE): Applies rotation to token embeddings based on their position
+    - Pros: Theoretically unlimited sequence length; good extrapolation to unseen lengths; efficiently captures both absolute and relative positions.
+    - Cons: Slightly more complex to implement than absolute embeddings.
+    - Used by Llama models
+
+
+
