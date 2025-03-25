@@ -77,6 +77,10 @@ The development of activation functions: Sigmoid->Tanh->ReLU->Leaky ReLU->Maxout
 - Tanh: Value range (-1, 1). **Zero-centered**, but still has problem of **saturation**. (Too prevent saturation, the latest popular method is to have a **batch normalization** before activation function.)
 - ReLu: Greatly **speed up** the convergence of **stochastic gradient descent**. When **calcualting gradient, ReLU almost consumes no computation**, while Sigmoid and Tanh requires differentiating exp. Character: 1) Single-side inhibition. 2) Relatively wide active range. 3) Sparse activation. Limitations: ReLU unit is vulnerable and could irreversible die. (A proper learning rate could lower the chance of killing a ReLU.)
 - Leaky ReLU: Give a very small negative gradient, which means the negative gradient woundn't lost completely.
+- GELU: A smoother version of ReLU, can go to negative values when $x<0$. GELU is the only activation function whose derivative can be negative value. (Not monotonically increasing)   
+<img src="image/activation_functions.png" width="400">  
+
+
 
 ### Attention vs LSTM
 RNN is hard to parallelize because of its sequential nature. CNN can parallelize, but each filter/kernel can only see limited vectros. Filters from higher layer have potential to see more vectors. Self-attention layer has Q, K, V and token at any position can attend other tokens at any positions. Self-attention has similar idea with CNN, but has more parameters and therefore is more flexible and needs more training data, e.g. ViT has 300M training pictures, but if only trained on ImageNet, its performance is worse than CNN. 
