@@ -15,7 +15,24 @@ Above is the total parameter number of a decoder block.
 - MQA: $2D/H$
 - GQA: $2D/G$
 
+# Transformer Architecture 
+n a Transformer block, you have two main sub-layers:
 
+- Multi-Head Attention (MHA)
+
+- Feed-Forward Network (FFN)
+
+Both with residual connections and LayerNorm (LN). The difference between Pre-Norm and Post-Norm is where you place the LN relative to the residual addition:
+
+- Traditional transformer block use Post-Norm, where LayerNorm is applied after the residual connection:
+  
+  $x_{l+1} = LN(x_{l} + sublayer(x_l))$
+
+- Modern LLM uses Pre-Norm LayerNorm is applied before the sub-layer, so the residual is "clean":
+
+  $x_{l+1} = x_l + sublayer(LN(x_l))$
+
+An intuition for pre-norm is that there is a clean “residual stream” without any normalization going from the input embeddings to the final output of the Transformer, which is purported to improve gradient flow.
 
 # Training
 ## RLHF
