@@ -32,7 +32,7 @@ Both with residual connections and LayerNorm (LN). The difference between Pre-No
 
   $x_{l+1} = x_l + sublayer(LN(x_l))$
 
-An intuition for pre-norm is that there is a clean “residual stream” without any normalization going from the input embeddings to the final output of the Transformer, which is purported to improve gradient flow. It mitigates the vanishing gradient problem, where gradients become progressively smaller as they are backpropagated through many layers, making it difficult for earlier layers to learn effectively.
+An intuition for pre-norm is that there is a clean “residual stream” without any normalization going from the input embeddings to the final output of the Transformer, which is purported to improve gradient flow. It mitigates the vanishing gradient problem, where gradients become progressively smaller as they are backpropagated through many layers, making it difficult for earlier layers to learn effectively. Taking the derivate of Pre-Norm, there's always $1$ from the residual, which guarantee a clean path for the gradient flow to prevent gradient vanishing.
 
 # Training
 ## RLHF
