@@ -38,3 +38,7 @@ Dot-product Attention use a scalar value to represent the similarity between K a
 Each head is attended to the heads at the same relative position in other tokens only. Not other heads of the same token.   
 - **What's the scaling factor $d_K$?**    
 The $d_K$ is the dimension of a single head. As the $QK^T$ scores are calculated for each head, using $\frac{1}{\sqrt{d_K}}$ can effectively adjust the scaling factor according to the number of heads.
+
+## LayerNorm 
+- LayerNorm is applied after addition/residual operation.
+- LayerNorm does have trainable parameters: after normalization $\hat{x}=\frac{x-\mu}{\sigma}$, it will be passed to **scale** $\gamma$ and **bias** $\beta$, where $y = \gamma \cdot \hat{x} + \beta $. 
